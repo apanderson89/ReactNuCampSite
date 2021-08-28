@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'typeface-lobster';
+import 'typeface-open-sans';
+
 //import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
