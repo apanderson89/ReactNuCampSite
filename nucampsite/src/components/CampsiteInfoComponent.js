@@ -1,5 +1,6 @@
 import { Component } from "react";
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class CampsiteInfo extends Component {
     constructor (props) {
@@ -18,16 +19,34 @@ class CampsiteInfo extends Component {
                                 <CardImgOverlay>
                                     <CardTitle>{campsite.name}</CardTitle>
                                 </CardImgOverlay>
-                                <CardBody><p>{campsite.description}</p></CardBody>
+                                <CardBody>
+                    <CardText>{campsite.description}</CardText>
+                </CardBody>
                             </Card> 
                             {this.renderComments(campsite.comments)}
                 </div>
 
             )
         }
-                return(
-                <div />
-                )
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <Breadcrumb>
+                            <BreadcrumbItem><Link to="/directory">Directory</Link></BreadcrumbItem>
+                            <BreadcrumbItem active>{props.campsite.name}</BreadcrumbItem>
+                        </Breadcrumb>
+                        <h2>{props.campsite.name}</h2>
+                        <hr />
+                    </div>
+                </div>
+                <div className="row">
+                    <RenderCampsite campsite={props.campsite} />
+                    <RenderComments comments={props.comments} />
+                </div>
+            </div>
+        );
+
         }
     renderComments(comments){
     console.log(comments)
@@ -50,8 +69,8 @@ class CampsiteInfo extends Component {
             return (
                 <div className="container">
                     <div className="row">
-                        {this.renderCampsite(this.props.campsite)}
-                        {this.renderComments(this.props.campsite.comments)}
+                        <RenderCampsite campsite={this.props.campsite} />
+                        <RenderCampsite comments={this.props.comments} />
                     </div>
                 </div>
             );
