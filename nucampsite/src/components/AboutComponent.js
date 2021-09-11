@@ -6,8 +6,10 @@ import { Link } from 'react-router-dom';
 function About(props) {
 
     const partners = props.partners.map(partner => {
-        return (
-            <h5>{partner.name}</h5>
+            return (
+           <Media tag = "li" key = {partner.id}>
+           <RenderPartner partner= {partner} />
+           </Media>
         );
     });
 
@@ -71,6 +73,20 @@ function About(props) {
             </div>
         </div>
     );
+}
+
+function RenderPartner ({partner}){
+    if(partner){
+        return(
+            <React.Fragment>
+                <Media src={partner.image} alt={partner.name} width = "150" />
+                <Media body className ="ml-5 mb-4">
+                    <Media>{partner.name}</Media>
+                    {partner.description}
+                </Media>
+            </React.Fragment>
+        )
+    }
 }
 
 export default About;

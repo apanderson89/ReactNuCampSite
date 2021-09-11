@@ -20,6 +20,7 @@ function Home(props) {
 }
 
 function RenderCard({item}) {
+    if (item)
     return (
         <Card>
             <CardImg src={item.image} alt={item.name} />
@@ -29,6 +30,7 @@ function RenderCard({item}) {
             </CardBody>
         </Card>
     );
+   return <div />
 }
 
 export default Home;   
