@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import {
   Card,
   CardImg,
@@ -10,6 +10,8 @@ import {
   CardTitle,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import Modal from "reactstrap/lib/Modal";
+import { LocalForm } from "react-redux-form";
 
 class CampsiteInfo extends Component {
   constructor(props) {
@@ -93,5 +95,22 @@ function RenderCampsite(props) {
         </div>
       );
     }
+  }
+
+  class CommentForm extends Component {
+    render() {
+      <React.Fragment>
+        <Button Outline>
+          <i className="fa fa-lg fa-pencil"></i>
+          Submit Comment
+        </Button>
+        <Modal>
+          <LocalForm>
+            
+          </LocalForm>
+        </Modal>
+      </React.Fragment>
+    }
+
   }
 export default CampsiteInfo;
