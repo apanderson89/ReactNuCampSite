@@ -11,7 +11,8 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import Modal from "reactstrap/lib/Modal";
-import { LocalForm } from "react-redux-form";
+import { Control, LocalForm } from "react-redux-form";
+import Label from "reactstrap/lib/Label";
 
 class CampsiteInfo extends Component {
   constructor(props) {
@@ -100,16 +101,57 @@ function RenderCampsite(props) {
   class CommentForm extends Component {
     render() {
       <React.Fragment>
-        <Button Outline>
+      <Button Outline onClick={this.toggleModal}>
           <i className="fa fa-lg fa-pencil"></i>
           Submit Comment
         </Button>
         <Modal>
           <LocalForm>
-            
+            <div className="form-group">
+              <Label hmtlFor="rating">Rating</Label>
+              <Control.select
+              className= "form-control"
+              id= "rating"
+              name ="rating"
+              model ="rating">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+              </Control.select>
+              </div>
+              <div className="form-group">
+              <Label hmtlFor="author">Author</Label>
+              <Control.text
+              className= "form-control"
+              id= "Author"
+              name ="Author"
+              model ="Author">
+              </Control.text>
+                
+            </div>
+            <div className="form-group">
+              <Label hmtlFor="comment">Comment</Label>
+              <Control.text
+              className= "form-control"
+              id= "Comment"
+              name ="Comment"
+              model ="Comment">
+              </Control.text>
+                
+            </div>
+    <div>
+      <Button color="primary">Submit</Button>
           </LocalForm>
         </Modal>
       </React.Fragment>
+      </div>
     }
 
   }
