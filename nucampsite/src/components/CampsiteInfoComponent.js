@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import Modal from "reactstrap/lib/Modal";
 import { Control, LocalForm } from "react-redux-form";
 import Label from "reactstrap/lib/Label";
+import { throwStatement } from "@babel/types";
 
 class CampsiteInfo extends Component {
   constructor(props) {
@@ -105,8 +106,9 @@ function RenderCampsite(props) {
           <i className="fa fa-lg fa-pencil"></i>
           Submit Comment
         </Button>
-        <Modal>
-          <LocalForm>
+        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+          <ModalHeader> Submit Feedback</ModalHeader>
+          <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
             <div className="form-group">
               <Label hmtlFor="rating">Rating</Label>
               <Control.select
@@ -147,12 +149,13 @@ function RenderCampsite(props) {
                 
             </div>
     <div>
-      <Button color="primary">Submit</Button>
-          </LocalForm>
-        </Modal>
-      </React.Fragment>
+      <Button type="submit" color="primary">Submit</Button>
       </div>
+      </Modal>
+      </LocalForm>
+      </React.Fragment>
     }
+  }
 
   }
 export default CampsiteInfo;
