@@ -14,6 +14,7 @@ import Modal from "reactstrap/lib/Modal";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import Label from "reactstrap/lib/Label";
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 
 
