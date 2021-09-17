@@ -13,49 +13,43 @@ import {
 import Modal from "reactstrap/lib/Modal";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import Label from "reactstrap/lib/Label";
+import { Loading } from './LoadingComponent';
 
-class CampsiteInfo extends Component {
-    render() {
-        if (this.props.campsite) {
-            return (
-                <div className="container">
-                    <div className="row">
-                        <RenderCampsite campsite={this.props.campsite} />
-                        <RenderComments comments={this.props.comments}/>
-                    </div>
-                </div>
-            );
-        }
-        return <div />;
-    }
-}
 
-function RenderCampsite(props) {
-    const campsite = props.campsite;
-    if (campsite) {
-        return (
-            <div className="col-md-5 m-1">
-                <Card>
-                    <CardImg width="100%" src={campsite.image} alt={campsite.name} />
-                    <CardImgOverlay>
-                        <CardTitle>{campsite.name}</CardTitle>
-                    </CardImgOverlay>
-                    <CardBody>
-                        <CardText>{campsite.description}</CardText>
-                    </CardBody>
-                </Card>
-            </div>
-        );
+
+function CampsiteInfo(props) {
+  if (props.isLoading) {
+      return (
+          <div className="container">
+              <div className="row">
+                  <Loading />
+              </div>
+          </div>
+      );
+  }
+  if (props.errMess) {
+      return (
+          <div className="container">
+              <div className="row">
+                  <div className="col">
+                      <h4>{props.errMess}</h4>
+                  </div>
+              </div>
+          </div>
+      );
+  }
+  if (props.campsite) {
+        
     } else {
         return null
     }
 }
-function RenderComments(props) {
-    if (props.comments) {
+function RenderComments({comments, addComment, campsiteId}) {
+    if (comments) {
         return (
             <div className="col">
                 <h4>Comments</h4>
-                {props.comments.map((comment) => (
+                {comments.map((comment) => (
                     <p key={comment.id}>
                         {comment.text}
                         <br />
@@ -67,13 +61,18 @@ function RenderComments(props) {
                         }).format(new Date(Date.parse(comment.date)))}
                     </p>
                 ))}
-                <CommentForm/>
+                 <CommentForm campsiteId={campsiteId} addComment={addComment} />
             </div>
+            
+                    
+
         );
     } else {
         return null
     }
 }
+
+
 
 const required = val => val && val.length;
 const maxLength = len => val => !val || (val.length <= len);
@@ -98,8 +97,8 @@ class CommentForm extends Component {
     }
 
     handleSubmit(values) {
-        console.log("Current state is: " + JSON.stringify(values));
-        alert("Current state is: " + JSON.stringify(values));
+      this.toggleModal();
+      this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
     }
 
     render() {
