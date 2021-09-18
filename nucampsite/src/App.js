@@ -1,10 +1,10 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
-import Directory from './components/DirectoryComponent';
+
+
 import './App.css';
-import { CAMPSITES } from './shared/campsites';
+
 import Main from './components/MainComponent';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
